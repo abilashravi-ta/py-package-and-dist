@@ -77,12 +77,11 @@ jobs:
           ls -la
           tree .
 
-      - name: Unzip artifact for deployment
-        run: unzip python-build.zip
-
-      - name: BashCMD - ls (after unzip)
-        shell: bash -el {0}
+      - name: Install package
         run: |
-          ls -la
-          tree .
+          pip install addition_mod-0.0.1-py3-none-any.whl
+
+      - name: Run package
+        run: |
+          python -c "from addition_mod import adder; print(adder.add_one(2))"
      
