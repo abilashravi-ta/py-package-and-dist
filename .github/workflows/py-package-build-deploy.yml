@@ -28,10 +28,16 @@ jobs:
           python -m pip install --upgrade pip
           pip list
 
+      - name: Installing tree
+        shell: bash -el {0}
+        run: |
+          apt-get install -y tree
+
       - name: BashCMD - ls (before)
         shell: bash -el {0}
         run: |
           ls -la
+          tree .
 
       - name: Upgrade and build
         run: |
@@ -42,6 +48,7 @@ jobs:
         shell: bash -el {0}
         run: |
           ls -la
+          tree .
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
