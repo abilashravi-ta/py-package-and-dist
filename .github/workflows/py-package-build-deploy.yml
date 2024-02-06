@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: python-build
-          path: dist/addition_mod-0.0.1-py3-none-any.whl
+          path: dist/
 
   deploy-runs:
     name: Download and run py-package
