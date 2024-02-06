@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  conda-runs:
+  build-runs:
     name: Build py-package
     runs-on: 'ubuntu-latest'
     steps:
@@ -55,3 +55,34 @@ jobs:
         with:
           name: python-build
           path: dist/addition_mod-0.0.1-py3-none-any.whl
+
+  deploy-runs:
+    name: Download and run py-package
+    runs-on: 'ubuntu-latest'
+    needs: build-runs
+    steps:
+      - name: Installing tree
+        shell: bash -el {0}
+        run: |
+          sudo apt-get install -y tree
+
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: python-build
+
+      - name: BashCMD - ls (before unzip)
+        shell: bash -el {0}
+        run: |
+          ls -la
+          tree .
+
+      - name: Unzip artifact for deployment
+        run: unzip python-build.zip
+
+      - name: BashCMD - ls (after unzip)
+        shell: bash -el {0}
+        run: |
+          ls -la
+          tree .
+     
