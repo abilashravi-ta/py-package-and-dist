@@ -47,4 +47,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: python-build
-          path: dist/
+          path: dist/addition_mod-0.0.1-py3-none-any.whl
