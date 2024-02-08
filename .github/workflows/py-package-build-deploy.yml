@@ -6,7 +6,7 @@ name: Building and Deploying py-package
 on:
   push:
     branches:
-      - ci-py-package
+      - cd-azure-webapp
   workflow_dispatch:
 
 jobs:
