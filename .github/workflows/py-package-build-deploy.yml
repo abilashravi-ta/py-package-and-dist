@@ -84,4 +84,10 @@ jobs:
       - name: Run package
         run: |
           python -c "from addition_mod import adder; print(adder.add_one(2))"
+
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'dpc-exploration'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
      
