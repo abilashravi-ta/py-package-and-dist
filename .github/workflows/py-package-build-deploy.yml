@@ -71,7 +71,7 @@ jobs:
         with:
           name: python-build
 
-      - name: BashCMD - ls (before unzip)
+      - name: BashCMD - ls (without unzip)
         shell: bash -el {0}
         run: |
           ls -la
