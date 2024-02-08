@@ -85,6 +85,9 @@ jobs:
         run: |
           python -c "from addition_mod import adder; print(adder.add_one(2))"
 
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         with:
