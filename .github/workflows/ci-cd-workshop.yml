@@ -8,12 +8,26 @@ on:
 
 jobs:
 
-  checkout-job-run:
+  checkout-job-runs:
     name: With Checkout
     runs-on: 'ubuntu-latest'
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
+
+      - name: Installing tree
+        run: |
+          sudo apt-get install -y tree
+          tree .
+
+  without-checkout-job-runs:
+    name: Without Checkout
+    runs-on: 'ubuntu-latest'
+    needs: checkout-job-runs
+    steps:
+      - name: Run ls
+        run: |
+          ls -la
 
       - name: Installing tree
         run: |
