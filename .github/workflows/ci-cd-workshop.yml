@@ -23,7 +23,6 @@ jobs:
   without-checkout-job-runs:
     name: Without Checkout
     runs-on: 'ubuntu-latest'
-    needs: checkout-job-runs
     steps:
       - name: Run ls
         run: |
