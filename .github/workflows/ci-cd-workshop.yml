@@ -1,0 +1,21 @@
+name: CI/CD-Workshop
+
+on:
+  push:
+    branches:
+      - ci-helloworld
+  workflow_dispatch:
+
+jobs:
+
+  checkout-job-run:
+    name: With Checkout
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Installing tree
+        shell: bash -el {0}
+        run: |
+          sudo apt-get install -y tree
