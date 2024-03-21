@@ -32,3 +32,16 @@ jobs:
         run: |
           sudo apt-get install -y tree
           tree .
+          
+  hello-world-job-runs:
+    name: Hello World Job
+    runs-on: 'ubuntu-latest'
+    needs: without-checkout-job-runs
+    steps:
+      - name: Run echo
+        run: |
+          echo "Hello world.!"
+
+      - name: Run ls
+        run: |
+          ls -la
