@@ -3,7 +3,7 @@ name: CI/CD-Workshop
 on:
   push:
     branches:
-      - ci-helloworld
+      - miniforge-conda
   workflow_dispatch:
 
 jobs:
