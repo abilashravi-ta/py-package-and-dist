@@ -19,3 +19,27 @@ jobs:
         run: |
           sudo apt-get install -y tree
           tree .
+          echo "" && echo "############################" && echo ""
+          echo $HOME
+
+      - name: Miniforge wget
+        run: |
+          wget -O Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+          echo "" && echo "############################" && echo ""
+          tree .
+
+      - name: Miniforge bash
+        run: |
+          bash Miniforge3.sh -b -p "${HOME}/conda"
+          echo "" && echo "############################" && echo ""
+          source "${HOME}/conda/etc/profile.d/conda.sh"
+          echo "" && echo "############################" && echo ""
+          source "${HOME}/conda/etc/profile.d/mamba.sh"
+          echo "" && echo "############################" && echo ""
+          tree .
+
+      - name: conda info
+        run: |
+          conda info
+          echo "" && echo "############################" && echo ""
+          conda list
