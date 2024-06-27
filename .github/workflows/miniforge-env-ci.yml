@@ -1,0 +1,21 @@
+name: CI/CD-Workshop
+
+on:
+  push:
+    branches:
+      - miniforge-conda-trials
+  workflow_dispatch:
+
+jobs:
+
+  checkout-job-runs:
+    name: With Checkout
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Installing tree
+        run: |
+          sudo apt-get install -y tree
+          tree .
