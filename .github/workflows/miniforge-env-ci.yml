@@ -62,6 +62,7 @@ jobs:
 
       - name: conda info (after activate)
         run: |
+          conda init
           conda activate mle-dev
           echo "" && echo "############## conda info ##############" && echo ""
           conda info
