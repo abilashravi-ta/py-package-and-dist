@@ -48,7 +48,7 @@ jobs:
 
       - name: conda env create
         run: |
-          conda create --file env.yml
+          conda env create --file env.yml
 
       - name: conda env info
         run: |
