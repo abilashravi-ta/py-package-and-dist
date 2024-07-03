@@ -43,3 +43,13 @@ jobs:
           conda info
           echo "" && echo "############################" && echo ""
           conda list
+          echo "" && echo "############################" && echo ""
+          conda env list
+
+      - name: conda env create
+        run: |
+          conda create --file env.yml
+
+      - name: conda env info
+        run: |
+          conda env list
