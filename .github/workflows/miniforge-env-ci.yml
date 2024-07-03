@@ -66,6 +66,7 @@ jobs:
 
       - name: conda info (after activate)
         run: |
+          source /usr/share/miniconda/etc/profile.d/conda.sh
           conda activate mle-dev
           echo "" && echo "############## conda info ##############" && echo ""
           conda info
