@@ -1,0 +1,81 @@
+name: CI/CD-Workshop
+
+on:
+  push:
+    branches:
+      - anonlib-trials
+  workflow_dispatch:
+
+jobs:
+
+  checkout-job-runs:
+    name: Miniforge env from Miniconda yml-file
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Installing tree
+        run: |
+          sudo apt-get install -y tree
+          tree .
+          echo "" && echo "############################" && echo ""
+          echo $HOME
+
+      - name: Miniforge wget
+        run: |
+          wget -O Miniforge3.sh "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+          echo "" && echo "############################" && echo ""
+          tree .
+
+      - name: Miniforge bash
+        run: |
+          bash Miniforge3.sh -b -p "${HOME}/conda"
+          echo "" && echo "############################" && echo ""
+          source "${HOME}/conda/etc/profile.d/conda.sh"
+          echo "" && echo "############################" && echo ""
+          source "${HOME}/conda/etc/profile.d/mamba.sh"
+          echo "" && echo "############################" && echo ""
+          tree .
+
+      - name: conda info (before env creation)
+        run: |
+          echo "" && echo "############## conda info ##############" && echo ""
+          conda info
+          echo "" && echo "############### conda list #############" && echo ""
+          conda list
+          echo "" && echo "############# conda env list ###############" && echo ""
+          conda env list
+
+      - name: conda env create
+        run: |
+          conda env create --file env.yml
+
+      - name: conda info (before activate)
+        run: |
+          echo "" && echo "############## conda info ##############" && echo ""
+          conda info
+          echo "" && echo "############### conda list #############" && echo ""
+          conda list
+          echo "" && echo "############# conda env list ###############" && echo ""
+          conda env list
+
+      - name: conda info (after activate)
+        run: |
+          source /usr/share/miniconda/etc/profile.d/conda.sh
+          conda activate mle-dev
+          echo "" && echo "############## conda info ##############" && echo ""
+          conda info
+          echo "" && echo "############### conda list #############" && echo ""
+          conda list
+          echo "" && echo "############# conda env list ###############" && echo ""
+          conda env list
+
+      - name: conda env export
+        run: |
+          source /usr/share/miniconda/etc/profile.d/conda.sh
+          conda activate mle-dev
+          echo "" && echo "############### conda env list #############" && echo ""
+          conda env list
+          echo "" && echo "############# conda env export ###############" && echo ""
+          conda env export
