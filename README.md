@@ -1,2 +1,2 @@
 # py-package-and-dist
-Repo for testing python packaging and distribution
+Repo for testing python packaging and distribution.
