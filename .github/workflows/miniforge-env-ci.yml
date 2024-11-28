@@ -48,7 +48,8 @@ jobs:
           conda env list
           echo "" && echo "############# cat /usr/share/miniconda/.condarc ###############" && echo ""
           cat /usr/share/miniconda/.condarc
-          conda config --remove channels 'https://repo.anaconda.com/pkgs/main'
+          sed -i 's/repo.anaconda.com\/pkgs\/main/repo.prefix.dev\/conda-forge/g' /usr/share/miniconda/.condarc
+          sed -i 's/repo.anaconda.com\/pkgs\/r/beta.mamba.pm\/get\/conda-forge/g' /usr/share/miniconda/.condarc
 
       - name: .condarc in next task
         run: |
